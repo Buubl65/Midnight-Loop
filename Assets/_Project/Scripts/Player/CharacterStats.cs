@@ -42,5 +42,7 @@ public class CharacterStats : MonoBehaviour
     void Die()
     {
         Debug.Log("Игрок умер");
+
+        GameManager.Instance.GameOver();
     }
 }

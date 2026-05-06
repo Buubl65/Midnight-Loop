@@ -7,10 +7,9 @@ public class CharacterMovement : MonoBehaviour
 
     void Update()
     {
-        float x = Input.GetAxis("Horizontal");
-        float z = Input.GetAxis("Vertical");
+        float x = InputManager.Instance.MoveX;
+        float z = InputManager.Instance.MoveZ;
 
-        // движение относительно направления игрока
         Vector3 move = transform.right * x + transform.forward * z;
 
         controller.Move(move * stats.moveSpeed * Time.deltaTime);
