@@ -12,13 +12,28 @@ public class WfcCell : MonoBehaviour
     public void Collapse()
     {
         isCollapsed = true;
-        // Вибираємо один випадковий тайл із доступних
-        WfcTile selectedTile = possibleTiles[Random.Range(0, possibleTiles.Count)];
 
+        WfcTile selected = GetWeightedRandom();
         possibleTiles.Clear();
-        possibleTiles.Add(selectedTile);
+        possibleTiles.Add(selected);
 
-        // Візуалізуємо вибраний тайл
-        Instantiate(selectedTile.gameObject, transform.position, transform.rotation, transform);
+        Instantiate(selected.gameObject, transform.position, transform.rotation, transform);
+    }
+
+    private WfcTile GetWeightedRandom()
+    {
+        int totalWeight = 0;
+        foreach (var t in possibleTiles) totalWeight += t.weight;
+
+        int roll = Random.Range(0, totalWeight);
+        int cumulative = 0;
+
+        foreach (var t in possibleTiles)
+        {
+            cumulative += t.weight;
+            if (roll < cumulative) return t;
+        }
+
+        return possibleTiles[0]; // fallback
     }
 }

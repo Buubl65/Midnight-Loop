@@ -2,9 +2,16 @@ using UnityEngine;
 
 public class WfcTile : MonoBehaviour
 {
-    // Порядок: 0-Північ, 1-Схід, 2-Південь, 3-Захід
+    public enum TileType { Road, Building, Empty, Prop }
+
+
+    [Header("Sockets")]
     public int[] sockets = new int[4];
 
-    // Вага тайла
+    [Header("Info")]
+    public TileType tileType;
     public int weight = 1;
+
+    [Header("Placement")]
+    public bool canPlaceProp;
 }
