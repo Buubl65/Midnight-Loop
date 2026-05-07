@@ -4,36 +4,51 @@ using UnityEngine;
 public class WfcCell : MonoBehaviour
 {
     public bool isCollapsed = false;
-    public List<WfcTile> possibleTiles; // Список доступних варіантів
 
-    // Повертає кількість варіантів (Ентропію)
-    public int Entropy => possibleTiles.Count;
+    // Теперь мы храним список ВАРИАНТОВ (тайл + его поворот)
+    // Этот класс WfcTileVariant мы определим ниже или в отдельном файле
+    public List<WfcTileVariant> possibleVariants = new List<WfcTileVariant>();
+
+    public int Entropy => possibleVariants.Count;
+
+    // Координаты ячейки (полезно для оптимизации, чтобы не искать их через циклы)
+    [HideInInspector] public Vector2Int gridPos;
 
     public void Collapse()
     {
-        isCollapsed = true;
-
-        WfcTile selected = GetWeightedRandom();
-        possibleTiles.Clear();
-        possibleTiles.Add(selected);
-
-        Instantiate(selected.gameObject, transform.position, transform.rotation, transform);
-    }
-
-    private WfcTile GetWeightedRandom()
-    {
-        int totalWeight = 0;
-        foreach (var t in possibleTiles) totalWeight += t.weight;
-
-        int roll = Random.Range(0, totalWeight);
-        int cumulative = 0;
-
-        foreach (var t in possibleTiles)
+        if (possibleVariants.Count == 0)
         {
-            cumulative += t.weight;
-            if (roll < cumulative) return t;
+            Debug.LogError($"Противоречие в ячейке {gridPos}: нет доступных вариантов!");
+            return;
         }
 
-        return possibleTiles[0]; // fallback
+        isCollapsed = true;
+
+        WfcTileVariant selected = GetWeightedRandom();
+        possibleVariants.Clear();
+        possibleVariants.Add(selected);
+
+        // Спавним объект
+        GameObject go = Instantiate(selected.prefab.gameObject, transform.position, Quaternion.identity, transform);
+
+        // ПРИМЕНЯЕМ ПОВОРОТ: вращаем вокруг оси Y
+        go.transform.Rotate(0, selected.rotation, 0);
+    }
+
+    private WfcTileVariant GetWeightedRandom()
+    {
+        float totalWeight = 0;
+        foreach (var v in possibleVariants) totalWeight += v.prefab.weight;
+
+        float roll = Random.Range(0f, totalWeight);
+        float cumulative = 0;
+
+        foreach (var v in possibleVariants)
+        {
+            cumulative += v.prefab.weight;
+            if (roll <= cumulative) return v;
+        }
+
+        return possibleVariants[0];
     }
 }
