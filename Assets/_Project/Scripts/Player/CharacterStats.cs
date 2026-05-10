@@ -16,9 +16,22 @@ public class CharacterStats : MonoBehaviour
     public float dashDuration = 0.2f;
     public float dashCooldown = 1f;
 
+    [Header("Stamina")]
+    public float maxStamina = 100f;
+    public float currentStamina = 100f;
+
+    public float staminaRegen = 15f;
+    public float dashStaminaCost = 25f;
+    public float jumpStaminaCost = 15f;
+
     void Start()
     {
         currentHealth = maxHealth;
+    }
+
+    void Update()
+    {
+        RegenerateStamina();
     }
 
     // Получение урона
@@ -44,6 +57,30 @@ public class CharacterStats : MonoBehaviour
 
         if (currentHealth > maxHealth)
             currentHealth = maxHealth;
+    }
+
+    private void RegenerateStamina()
+    {
+        if (currentStamina < maxStamina)
+        {
+            currentStamina += staminaRegen * Time.deltaTime;
+
+            if (currentStamina > maxStamina)
+                currentStamina = maxStamina;
+        }
+    }
+
+    public bool HasEnoughStamina(float cost)
+    {
+        return currentStamina >= cost;
+    }
+
+    public void UseStamina(float amount)
+    {
+        currentStamina -= amount;
+
+        if (currentStamina < 0)
+            currentStamina = 0;
     }
 
     void Die()

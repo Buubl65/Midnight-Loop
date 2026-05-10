@@ -41,8 +41,11 @@ public class CharacterMovement : MonoBehaviour
 
         if (controller.isGrounded)
         {
-            if (InputManager.Instance.JumpPressed)
+            if (InputManager.Instance.JumpPressed &&
+                stats.HasEnoughStamina(stats.jumpStaminaCost))
             {
+                stats.UseStamina(stats.jumpStaminaCost);
+
                 velocity.y = stats.jumpSpeed;
             }
             else if (velocity.y < 0)
@@ -71,7 +74,8 @@ public class CharacterMovement : MonoBehaviour
     private void HandleDashInput()
     {
         if (InputManager.Instance.DashPressed &&
-            dashCooldownTimer <= 0f)
+        dashCooldownTimer <= 0f &&
+        stats.HasEnoughStamina(stats.dashStaminaCost))
         {
             StartDash();
         }
@@ -79,6 +83,8 @@ public class CharacterMovement : MonoBehaviour
 
     private void StartDash()
     {
+        stats.UseStamina(stats.dashStaminaCost);
+
         isDashing = true;
 
         dashTimer = stats.dashDuration;
