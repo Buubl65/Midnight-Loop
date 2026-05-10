@@ -882,6 +882,7 @@ MonoBehaviour:
   currentStamina: 100
   staminaRegen: 15
   dashStaminaCost: 25
+  jumpStaminaCost: 15
 --- !u!114 &1987187567
 MonoBehaviour:
   m_ObjectHideFlags: 0
