@@ -2,12 +2,19 @@ using UnityEngine;
 
 public class CharacterStats : MonoBehaviour
 {
-    [Header("Base Stats")]
+    [Header("Health")]
     public float maxHealth = 100f;
     public float currentHealth;
-
     public float defense = 10f;
-    public float moveSpeed = 5f;
+
+    [Header("Movement")]
+    public float moveSpeed = 10f;
+    public float jumpSpeed = 7f;
+
+    [Header("Dash")]
+    public float dashSpeed = 20f;
+    public float dashDuration = 0.2f;
+    public float dashCooldown = 1f;
 
     void Start()
     {
