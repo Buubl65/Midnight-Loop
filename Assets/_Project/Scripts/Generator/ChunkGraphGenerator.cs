@@ -109,9 +109,9 @@ public class ChunkGraphGenerator : MonoBehaviour
             gridPos.y * chunkSize
         );
 
-        Instantiate(chunk, worldPos, Quaternion.identity, transform);
+        ChunkData spawnedChunk = Instantiate(chunk, worldPos, Quaternion.identity, transform);
 
-        placed.Add(gridPos, new PlacedChunk(chunk, gridPos));
+        placed.Add(gridPos, new PlacedChunk(spawnedChunk, gridPos));
     }
 
     void OnDrawGizmos()

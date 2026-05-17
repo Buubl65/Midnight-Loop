@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PlacedChunk : MonoBehaviour
+public class PlacedChunk 
 {
     public ChunkData chunk;
     public Vector2Int gridPos;
