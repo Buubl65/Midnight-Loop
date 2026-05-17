@@ -63,9 +63,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 6e45b772cfe27d3499ee03b9ccb874fb, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8087455878372634576}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 6e45b772cfe27d3499ee03b9ccb874fb, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 8129693966974458364}
   m_SourcePrefab: {fileID: 100100000, guid: 6e45b772cfe27d3499ee03b9ccb874fb, type: 3}
 --- !u!1 &402668842357867256 stripped
 GameObject:
@@ -94,20 +91,3 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -496058992349931718, guid: 6e45b772cfe27d3499ee03b9ccb874fb, type: 3}
---- !u!114 &8129693966974458364
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 402668842357867256}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f2c1d173441a0784d97ab72b8e439f72, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ChunkData
-  north: 1
-  east: 1
-  south: 1
-  west: 1
-  size: {x: 1, y: 1}
