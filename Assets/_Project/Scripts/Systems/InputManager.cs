@@ -8,6 +8,8 @@ public class InputManager : MonoBehaviour
     public float MoveZ { get; private set; }
     public float MouseX { get; private set; }
     public float MouseY { get; private set; }
+    public bool JumpPressed => Input.GetButton("Jump");
+    public bool DashPressed => Input.GetButtonDown("Dash");
 
     void Awake()
     {
