@@ -106,7 +106,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42f246b57a91b4e4f8b368d914268fe6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Chunk
-  North: 0
-  South: 0
-  East: 1
-  West: 1
+  North: 1
+  South: 1
+  East: 0
+  West: 0
+  spawnWeight: 1
+  isBorder: 0

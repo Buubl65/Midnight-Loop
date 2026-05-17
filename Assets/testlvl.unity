@@ -186,6 +186,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 308676886}
+  - component: {fileID: 308676887}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
@@ -208,6 +209,26 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &308676887
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 308676884}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c65da0f5cdc5c240a80ebc76319fc56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WFCGenerator
+  chunkPrefabs:
+  - {fileID: 1910888860504823308, guid: 52c3af0d8fa9caf44a53f795aa610c15, type: 3}
+  - {fileID: 1586799353078473660, guid: 8fe53da14f65d8a4d9fdf7a519cc7995, type: 3}
+  - {fileID: 6813348829652934310, guid: 52b3f5bc1f89e1e4596bab0b8af145e1, type: 3}
+  - {fileID: 8339198699179630028, guid: af7ecc3cf0e1df54ca2bdaa4e8cef662, type: 3}
+  - {fileID: 8610865214793584229, guid: 264c576288846524a81e3ab2b4418935, type: 3}
+  gridSize: {x: 10, y: 10}
+  chunkSize: 40
 --- !u!1 &682840567
 GameObject:
   m_ObjectHideFlags: 0
@@ -569,7 +590,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CharacterMovement
   controller: {fileID: 1987187564}
   stats: {fileID: 1987187566}
-  gravity: -9.81
+  gravity: 9.81
   terminalVelocity: 100
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

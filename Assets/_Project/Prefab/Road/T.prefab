@@ -107,8 +107,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Chunk
   North: 1
-  South: 1
-  East: 0
+  South: 0
+  East: 1
   West: 1
   spawnWeight: 0.154
-  isEdgeCap: 0
+  isBorder: 0
