@@ -62,6 +62,7 @@ public class WFCGenerator : MonoBehaviour
     [SerializeField] private List<Chunk> chunkPrefabs;
     [SerializeField] private Vector2Int gridSize = new Vector2Int(10, 10);
     [SerializeField] private float chunkSize = 10f;
+    [SerializeField] private Transform player;
 
     private Cell[,] grid;
     private List<WFCTile> allTilesPrototype = new List<WFCTile>();
@@ -76,6 +77,7 @@ public class WFCGenerator : MonoBehaviour
     {
         PrepareTilesPrototypes();
         InitializeGrid();
+        SpawnPlayerInCenter();
 
         if (RunWFC())
         {
@@ -87,6 +89,7 @@ public class WFCGenerator : MonoBehaviour
             Debug.LogError("WFC: Помилка суперечності! Не вдалося підібрати тайли без порушення правил. Спробуйте ще раз або додайте більше типів чанків (наприклад, пусті блоки чи тупики).");
         }
     }
+
 
     private void PrepareTilesPrototypes()
     {
@@ -289,5 +292,26 @@ public class WFCGenerator : MonoBehaviour
                 }
             }
         }
+    }
+    private void SpawnPlayerInCenter()
+    {
+        int centerX = gridSize.x / 2;
+        int centerY = gridSize.y / 2;
+
+        Vector3 spawnPos = new Vector3(
+            centerX * chunkSize,
+            2f,
+            centerY * chunkSize
+        );
+
+        CharacterController cc = player.GetComponent<CharacterController>();
+
+        if (cc != null)
+            cc.enabled = false;
+
+        player.position = spawnPos;
+
+        if (cc != null)
+            cc.enabled = true;
     }
 }

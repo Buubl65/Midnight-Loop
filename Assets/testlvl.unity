@@ -229,6 +229,7 @@ MonoBehaviour:
   - {fileID: 8610865214793584229, guid: 264c576288846524a81e3ab2b4418935, type: 3}
   gridSize: {x: 10, y: 10}
   chunkSize: 40
+  player: {fileID: 1987187565}
 --- !u!1 &682840567
 GameObject:
   m_ObjectHideFlags: 0
@@ -543,8 +544,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1987187563}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.06, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
