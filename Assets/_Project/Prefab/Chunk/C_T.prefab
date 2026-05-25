@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2324312984712426566}
+  - component: {fileID: 5973585467130929629}
   m_Layer: 0
   m_Name: C_T
   m_TagString: Untagged
@@ -40,6 +41,24 @@ Transform:
   - {fileID: 1793899985690664126}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5973585467130929629
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2375360740661538312}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42f246b57a91b4e4f8b368d914268fe6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Chunk
+  North: 0
+  South: 0
+  East: 0
+  West: 0
+  spawnWeight: 1
+  isBorder: 0
 --- !u!1001 &2265187420810443605
 PrefabInstance:
   m_ObjectHideFlags: 0

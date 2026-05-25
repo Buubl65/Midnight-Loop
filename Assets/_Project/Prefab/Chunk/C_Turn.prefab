@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5538870557005357140}
+  - component: {fileID: 6545224189844972817}
   m_Layer: 0
   m_Name: C_Turn
   m_TagString: Untagged
@@ -41,6 +42,24 @@ Transform:
   - {fileID: 6477696083972941257}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6545224189844972817
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5908850987997913580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42f246b57a91b4e4f8b368d914268fe6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Chunk
+  North: 1
+  South: 0
+  East: 1
+  West: 0
+  spawnWeight: 1
+  isBorder: 0
 --- !u!1001 &1342061450287798536
 PrefabInstance:
   m_ObjectHideFlags: 0

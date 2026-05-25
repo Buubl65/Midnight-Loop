@@ -271,7 +271,7 @@ public class WFCGenerator : MonoBehaviour
 
     private void InstantiateGrid()
     {
-        // Очищення старих об'єктів перед генерацією (якщо запускаєте кілька разів в редакторі)
+        // Очищення старих об'єктів перед генерацією
         for (int i = transform.childCount - 1; i >= 0; i--)
         {
             DestroyImmediate(transform.GetChild(i).gameObject);
@@ -285,7 +285,13 @@ public class WFCGenerator : MonoBehaviour
                 if (cell.collapsedTile != null)
                 {
                     Vector3 spawnPos = new Vector3(x * chunkSize, 0, y * chunkSize);
-                    Quaternion spawnRot = Quaternion.Euler(0, cell.collapsedTile.rotationIndex * 90f, 0);
+
+                    Vector3 originalRot = cell.collapsedTile.prefab.transform.eulerAngles;
+
+                    // Додаємо поворот від WFC тільки до осі Y
+                    float newYRot = originalRot.y + (cell.collapsedTile.rotationIndex * 90f);
+                    Quaternion spawnRot = Quaternion.Euler(originalRot.x, newYRot, originalRot.z);
+                    // -----------------------
 
                     Chunk spawnedChunk = Instantiate(cell.collapsedTile.prefab, spawnPos, spawnRot, transform);
                     spawnedChunk.name = $"Chunk_{x}_{y}_Rot_{cell.collapsedTile.rotationIndex * 90}";
