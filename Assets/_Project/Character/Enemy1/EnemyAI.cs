@@ -2,36 +2,43 @@ using UnityEngine;
 using System.Collections;
 using UnityEngine.AI;
 
+[RequireComponent(typeof(EnemyStats))] 
 public class EnemyAI : MonoBehaviour
 {
+    [Header("Компоненти")]
     public NavMeshAgent navAgent;
     public Transform player;
-    public float health;
-    public float walkPointRange;
-    public float timeBetweenAttacks;
-    public float sightRange;
-    public float attackRange;
-    public int damage;
     public Animator animator;
-    public ParticleSystem hitEffect;
+
+    [Header("Налаштування AI")]
+    public float walkPointRange = 10f;
+    public float timeBetweenAttacks = 2f;
+    public float sightRange = 15f;
+    public float attackRange = 2f;
+
+    [Header("Швидкість руху")]
+    public float walkSpeed = 3.5f; 
+    public float chaseSpeed = 9f; 
+
+    private EnemyStats stats;
 
     private Vector3 walkPoint;
     private bool walkPointSet;
     private bool alreadyAttacked;
-    private bool takeDamage;
+    private bool isTakingDamage; 
 
     private void Awake()
     {
         animator = GetComponent<Animator>();
         player = GameObject.Find("MainCharacter").transform;
         navAgent = GetComponent<NavMeshAgent>();
+        stats = GetComponent<EnemyStats>(); 
     }
 
     private void Update()
     {
-        if (health <= 0 || takeDamage) return;
+        if (stats.health <= 0 || isTakingDamage) return;
 
-        // Просто вимірюємо дистанцію до гравця замість використання LayerMask
         float distanceToPlayer = Vector3.Distance(transform.position, player.position);
 
         bool playerInSightRange = distanceToPlayer <= sightRange;
@@ -54,6 +61,7 @@ public class EnemyAI : MonoBehaviour
     private void Patroling()
     {
         navAgent.isStopped = false;
+        navAgent.speed = walkSpeed;
 
         if (!walkPointSet)
         {
@@ -79,10 +87,8 @@ public class EnemyAI : MonoBehaviour
         float randomZ = Random.Range(-walkPointRange, walkPointRange);
         float randomX = Random.Range(-walkPointRange, walkPointRange);
 
-        // Створюємо випадкову точку навколо ворога
         Vector3 randomPoint = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ);
 
-        // Перевіряємо, чи є поруч із цією точкою поверхня NavMesh (без використання шарів землі)
         NavMeshHit hit;
         if (NavMesh.SamplePosition(randomPoint, out hit, 2.0f, NavMesh.AllAreas))
         {
@@ -94,15 +100,19 @@ public class EnemyAI : MonoBehaviour
     private void ChasePlayer()
     {
         navAgent.isStopped = false;
+        navAgent.speed = chaseSpeed;
         navAgent.SetDestination(player.position);
-        animator.SetFloat("Speed", 1f);
+        animator.SetFloat("Speed", 2f);
     }
 
     private void AttackPlayer()
     {
         navAgent.isStopped = true;
         navAgent.SetDestination(transform.position);
-        transform.LookAt(player.position);
+
+        Vector3 direction = player.position - transform.position;
+        direction.y = 0;
+        transform.rotation = Quaternion.LookRotation(direction);
         animator.SetFloat("Speed", 0f);
 
         if (!alreadyAttacked)
@@ -116,9 +126,11 @@ public class EnemyAI : MonoBehaviour
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
 
             RaycastHit hit;
+            Debug.Log("КОМАНДА НА УДАР ПІШЛА! Удар номер: " + randomAttack);
             if (Physics.Raycast(transform.position, transform.forward, out hit, attackRange))
             {
-                // Тут буде логіка завдання шкоди гравцю
+                // Тут буде логіка завдання шкоди гравцю. 
+                // Ти зможеш брати значення шкоди так: stats.damage
             }
         }
     }
@@ -128,36 +140,25 @@ public class EnemyAI : MonoBehaviour
         alreadyAttacked = false;
     }
 
-    public void TakeDamage(float damage)
+    public void TriggerHit()
     {
-        if (health <= 0) return;
-
-        health -= damage;
-
-        if (hitEffect != null) hitEffect.Play();
         animator.SetTrigger("Hit");
-
         StartCoroutine(TakeDamageCoroutine());
-
-        if (health <= 0)
-        {
-            Die();
-        }
     }
 
     private IEnumerator TakeDamageCoroutine()
     {
-        takeDamage = true;
+        isTakingDamage = true;
         navAgent.isStopped = true;
         animator.SetFloat("Speed", 0f);
 
         yield return new WaitForSeconds(0.5f);
 
-        takeDamage = false;
-        if (health > 0) navAgent.isStopped = false;
+        isTakingDamage = false;
+        if (stats.health > 0) navAgent.isStopped = false;
     }
 
-    private void Die()
+    public void TriggerDeath()
     {
         navAgent.enabled = false;
         GetComponent<Collider>().enabled = false;
@@ -169,7 +170,6 @@ public class EnemyAI : MonoBehaviour
     private IEnumerator DestroyEnemyCoroutine()
     {
         yield return new WaitForSeconds(1.8f);
-
         Destroy(gameObject);
     }
 
