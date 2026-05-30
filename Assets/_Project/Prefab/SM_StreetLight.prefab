@@ -236,11 +236,42 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: ed33340ddaf063b4b8ae83a3e78218e0, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5906147033266142599}
   m_SourcePrefab: {fileID: 100100000, guid: ed33340ddaf063b4b8ae83a3e78218e0, type: 3}
 --- !u!4 &2642553293266406071 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: ed33340ddaf063b4b8ae83a3e78218e0, type: 3}
+  m_PrefabInstance: {fileID: 2532858373311016284}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &3451987762815602701 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: ed33340ddaf063b4b8ae83a3e78218e0, type: 3}
+  m_PrefabInstance: {fileID: 2532858373311016284}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &5906147033266142599
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3451987762815602701}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc882e962da2f1d42826e34f9c373949, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FlashlightFlicker
+  flashlightLight: {fileID: 5715150936466804980}
+  flashlightModel: {fileID: 3812034183265595864}
+  colorOn: {r: 0.9926068, g: 1, b: 0, a: 1}
+  colorOff: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  minTime: 0.5
+  maxTime: 2
+--- !u!23 &3812034183265595864 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -7511558181221131132, guid: ed33340ddaf063b4b8ae83a3e78218e0, type: 3}
   m_PrefabInstance: {fileID: 2532858373311016284}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8829690031327843501
