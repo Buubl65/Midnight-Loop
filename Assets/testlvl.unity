@@ -1027,7 +1027,7 @@ GameObject:
   - component: {fileID: 1987187566}
   m_Layer: 0
   m_Name: MainCharacter
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1089,6 +1089,15 @@ MonoBehaviour:
   currentHealth: 0
   defense: 10
   moveSpeed: 5
+  jumpSpeed: 7
+  dashSpeed: 20
+  dashDuration: 0.2
+  dashCooldown: 1
+  maxStamina: 100
+  currentStamina: 100
+  staminaRegen: 15
+  dashStaminaCost: 25
+  jumpStaminaCost: 15
 --- !u!114 &1987187567
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1103,7 +1112,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CharacterMovement
   controller: {fileID: 1987187564}
   stats: {fileID: 1987187566}
-  gravity: -9.81
+  gravity: 9.81
+  terminalVelocity: 100
 --- !u!1001 &759107760177665381
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1332,6 +1342,63 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: be02ad39587308d4cbaeeaf749d082c9, type: 3}
+--- !u!1001 &4774159376591849661
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4930746941925081540, guid: d7797b85a40d7df4dabcd4134a71074b, type: 3}
+      propertyPath: m_Name
+      value: SM_InteractGTA
+      objectReference: {fileID: 0}
+    - target: {fileID: 5703343373817584510, guid: d7797b85a40d7df4dabcd4134a71074b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 8.956
+      objectReference: {fileID: 0}
+    - target: {fileID: 5703343373817584510, guid: d7797b85a40d7df4dabcd4134a71074b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.31
+      objectReference: {fileID: 0}
+    - target: {fileID: 5703343373817584510, guid: d7797b85a40d7df4dabcd4134a71074b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1.04
+      objectReference: {fileID: 0}
+    - target: {fileID: 5703343373817584510, guid: d7797b85a40d7df4dabcd4134a71074b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 5703343373817584510, guid: d7797b85a40d7df4dabcd4134a71074b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 5703343373817584510, guid: d7797b85a40d7df4dabcd4134a71074b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5703343373817584510, guid: d7797b85a40d7df4dabcd4134a71074b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5703343373817584510, guid: d7797b85a40d7df4dabcd4134a71074b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 5703343373817584510, guid: d7797b85a40d7df4dabcd4134a71074b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5703343373817584510, guid: d7797b85a40d7df4dabcd4134a71074b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d7797b85a40d7df4dabcd4134a71074b, type: 3}
 --- !u!1001 &5112513130359845144
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1701,3 +1768,4 @@ SceneRoots:
   - {fileID: 7442471988433626991}
   - {fileID: 759107760177665381}
   - {fileID: 1138953930}
+  - {fileID: 4774159376591849661}
