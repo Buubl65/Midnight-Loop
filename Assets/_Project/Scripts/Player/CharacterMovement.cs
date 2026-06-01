@@ -59,16 +59,21 @@ public class CharacterMovement : MonoBehaviour
 
     private void ApplyMovement()
     {
-        Vector3 moveDirection =
-            transform.right * velocity.x +
-            transform.forward * velocity.z;
+        Vector3 moveDirection = (transform.right * InputManager.Instance.MoveX +
+                                 transform.forward * InputManager.Instance.MoveZ).normalized;
+
+        Vector3 horizontalVelocity = moveDirection * stats.moveSpeed;
+
+        if (controller.isGrounded && velocity.y < 0)
+        {
+            velocity.y = -2f; 
+        }
 
         velocity.y -= gravity * Time.deltaTime;
         velocity.y = Mathf.Max(velocity.y, -terminalVelocity);
 
-        moveDirection.y = velocity.y;
-
-        controller.Move(moveDirection * Time.deltaTime);
+        Vector3 totalMovement = (horizontalVelocity + Vector3.up * velocity.y) * Time.deltaTime;
+        controller.Move(totalMovement);
     }
 
     private void HandleDashInput()
