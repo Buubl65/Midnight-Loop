@@ -34,7 +34,6 @@ public class CharacterStats : MonoBehaviour
         RegenerateStamina();
     }
 
-    // Получение урона
     public void TakeDamage(float damage)
     {
         float finalDamage = damage - defense;
@@ -50,7 +49,6 @@ public class CharacterStats : MonoBehaviour
         }
     }
 
-    // Лечение
     public void Heal(float amount)
     {
         currentHealth += amount;
