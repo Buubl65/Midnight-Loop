@@ -25,7 +25,8 @@ public class EnemyAI : MonoBehaviour
     private Vector3 walkPoint;
     private bool walkPointSet;
     private bool alreadyAttacked;
-    private bool isTakingDamage; 
+    private bool isTakingDamage;
+    public bool IsAttacking { get; private set; }
 
     private void Awake()
     {
@@ -124,14 +125,6 @@ public class EnemyAI : MonoBehaviour
             animator.SetTrigger("Attack");
 
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
-
-            RaycastHit hit;
-            Debug.Log("КОМАНДА НА УДАР ПІШЛА! Удар номер: " + randomAttack);
-            if (Physics.Raycast(transform.position, transform.forward, out hit, attackRange))
-            {
-                // Тут буде логіка завдання шкоди гравцю. 
-                // Ти зможеш брати значення шкоди так: stats.damage
-            }
         }
     }
 
