@@ -24,6 +24,9 @@ public class CharacterStats : MonoBehaviour
     public float dashStaminaCost = 25f;
     public float jumpStaminaCost = 15f;
 
+    [Header("Money")]
+    public int money = 0;
+
     void Start()
     {
         currentHealth = maxHealth;
@@ -79,6 +82,22 @@ public class CharacterStats : MonoBehaviour
 
         if (currentStamina < 0)
             currentStamina = 0;
+    }
+
+    public void AddMoney(int amount)
+    {
+        money += amount;
+    }
+
+    public bool SpendMoney(int amount)
+    {
+        if (money >= amount)
+        {
+            money -= amount;
+            return true;
+        }
+
+        return false;
     }
 
     void Die()
