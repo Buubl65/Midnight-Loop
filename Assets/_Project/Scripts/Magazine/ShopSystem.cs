@@ -23,8 +23,10 @@ public class ShopSystem : MonoBehaviour
 
     void Start()
     {
+        Debug.Log("ShopSystem START");
         UpdateTarget();
         UpdateUI();
+        SpawnCurrentItem();
     }
 
     void Update()
@@ -49,6 +51,7 @@ public class ShopSystem : MonoBehaviour
 
         UpdateTarget();
         UpdateUI();
+        SpawnCurrentItem();
     }
 
     public void Previous()
@@ -59,6 +62,7 @@ public class ShopSystem : MonoBehaviour
 
         UpdateTarget();
         UpdateUI();
+        SpawnCurrentItem();
     }
 
     void UpdateTarget()
@@ -70,6 +74,16 @@ public class ShopSystem : MonoBehaviour
     {
         nameText.text = items[currentIndex].itemName;
         priceText.text = items[currentIndex].price.ToString();
+    }
+    void SpawnCurrentItem()
+    {
+        Debug.Log("Spawn called");
+        foreach (Transform child in itemsContainer)
+        {
+            Destroy(child.gameObject);
+        }
+
+        Instantiate(items[currentIndex].gameObject, itemsContainer);
     }
 
     public void Buy()

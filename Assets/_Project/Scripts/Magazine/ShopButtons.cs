@@ -3,6 +3,7 @@ using UnityEngine;
 public class ShopButtons : MonoBehaviour
 {
     public ShopSystem shop;
+    public GameObject shopUI;
 
     public void OnLeft()
     {
@@ -17,5 +18,10 @@ public class ShopButtons : MonoBehaviour
     public void OnBuy()
     {
         shop.Buy();
+    }
+
+    public void CloseShop()
+    {
+        shopUI.SetActive(false);
     }
 }
