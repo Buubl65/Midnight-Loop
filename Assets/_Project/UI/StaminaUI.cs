@@ -10,6 +10,6 @@ public class StaminaUI : MonoBehaviour
     void Update()
     {
         staminaText.text =
-            stats.currentStamina.ToString("0") + " / " + stats.maxStamina.ToString("0");
+            stats.currentStamina.ToString("0") + " <size=70%>/ " + stats.maxStamina.ToString("0") + "</size>";
     }
 }
