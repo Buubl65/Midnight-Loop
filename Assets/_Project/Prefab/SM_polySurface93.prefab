@@ -22,15 +22,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: bb4179d3c44c66740a2b31f9594067ab, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.4327085
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: bb4179d3c44c66740a2b31f9594067ab, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.028
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: bb4179d3c44c66740a2b31f9594067ab, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 3.573216
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: bb4179d3c44c66740a2b31f9594067ab, type: 3}
       propertyPath: m_LocalRotation.w
@@ -72,6 +72,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_polySurface93
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: bb4179d3c44c66740a2b31f9594067ab, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -99,4 +103,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ShopItem
   itemName: Burger
   price: 10
-  visual: {fileID: 0}
+  visual: {fileID: 5392606392035434550}
+--- !u!4 &5392606392035434550 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: bb4179d3c44c66740a2b31f9594067ab, type: 3}
+  m_PrefabInstance: {fileID: 5574571834268485597}
+  m_PrefabAsset: {fileID: 0}

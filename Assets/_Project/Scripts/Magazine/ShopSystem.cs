@@ -20,6 +20,7 @@ public class ShopSystem : MonoBehaviour
 
     private int currentIndex = 0;
     private Vector3 targetPos;
+    private ShopItem currentSpawnedItem;
 
     void Start()
     {
@@ -31,15 +32,9 @@ public class ShopSystem : MonoBehaviour
 
     void Update()
     {
-        itemsContainer.localPosition = Vector3.Lerp(
-            itemsContainer.localPosition,
-            targetPos,
-            Time.deltaTime * moveSpeed
-        );
-
-        for (int i = 0; i < items.Length; i++)
+        if (currentSpawnedItem != null)
         {
-            items[i].Rotate(rotateSpeed);
+            currentSpawnedItem.Rotate(rotateSpeed);
         }
     }
 
@@ -78,12 +73,19 @@ public class ShopSystem : MonoBehaviour
     void SpawnCurrentItem()
     {
         Debug.Log("Spawn called");
+
         foreach (Transform child in itemsContainer)
         {
             Destroy(child.gameObject);
         }
 
-        Instantiate(items[currentIndex].gameObject, itemsContainer);
+        GameObject spawnedObj = Instantiate(items[currentIndex].gameObject, itemsContainer);
+
+        spawnedObj.transform.localPosition = Vector3.zero;
+
+        spawnedObj.transform.localRotation = Quaternion.identity;
+
+        currentSpawnedItem = spawnedObj.GetComponent<ShopItem>();
     }
 
     public void Buy()
