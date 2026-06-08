@@ -18,7 +18,10 @@ public class EnemyAI : MonoBehaviour
 
     [Header("Швидкість руху")]
     public float walkSpeed = 3.5f; 
-    public float chaseSpeed = 9f; 
+    public float chaseSpeed = 9f;
+
+    [Header("Зброя")]
+    public EnemyWeapon weapon;
 
     private EnemyStats stats;
 
@@ -26,7 +29,7 @@ public class EnemyAI : MonoBehaviour
     private bool walkPointSet;
     private bool alreadyAttacked;
     private bool isTakingDamage;
-    public bool IsAttacking { get; private set; }
+    public bool IsAttacking { get; set; }
 
     private void Awake()
     {
@@ -131,6 +134,20 @@ public class EnemyAI : MonoBehaviour
     private void ResetAttack()
     {
         alreadyAttacked = false;
+    }
+
+    public void EnableWeaponDamage()
+    {
+        IsAttacking = true;
+        if (weapon != null)
+        {
+            weapon.ResetHit(); 
+        }
+    }
+
+    public void DisableWeaponDamage()
+    {
+        IsAttacking = false;
     }
 
     public void TriggerHit()
