@@ -103,6 +103,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ShopItem
   itemName: Burger
   price: 10
+  type: 1
+  boostAmount: 5
   visual: {fileID: 5392606392035434550}
 --- !u!4 &5392606392035434550 stripped
 Transform:

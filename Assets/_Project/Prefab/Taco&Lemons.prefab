@@ -120,4 +120,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ShopItem
   itemName: Taco
   price: 10
+  type: 2
+  boostAmount: 5
   visual: {fileID: 1389497463154950573}

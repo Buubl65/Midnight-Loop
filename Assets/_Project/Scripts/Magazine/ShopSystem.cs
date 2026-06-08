@@ -42,9 +42,10 @@ public class ShopSystem : MonoBehaviour
     {
         currentIndex++;
         if (currentIndex >= items.Length)
-            currentIndex = items.Length - 1;
+        {
+            currentIndex = 0;
+        }
 
-        UpdateTarget();
         UpdateUI();
         SpawnCurrentItem();
     }
@@ -53,9 +54,10 @@ public class ShopSystem : MonoBehaviour
     {
         currentIndex--;
         if (currentIndex < 0)
-            currentIndex = 0;
+        {
+            currentIndex = items.Length - 1;
+        }
 
-        UpdateTarget();
         UpdateUI();
         SpawnCurrentItem();
     }
@@ -95,6 +97,24 @@ public class ShopSystem : MonoBehaviour
         if (playerStats.SpendMoney(item.price))
         {
             Debug.Log("Bought: " + item.itemName);
+
+            switch (item.type)
+            {
+                case ShopItem.ItemType.IncreaseMaxHP:
+                    playerStats.maxHealth += item.boostAmount;
+                    Debug.Log("Max HP increased by " + item.boostAmount);
+                    break;
+
+                case ShopItem.ItemType.IncreaseDefense:
+                    playerStats.defense += item.boostAmount;
+                    Debug.Log("Defense increased by " + item.boostAmount);
+                    break;
+
+                case ShopItem.ItemType.IncreaseDamage:
+                    playerStats.attackDamage += item.boostAmount;
+                    Debug.Log("Damage increased by " + item.boostAmount);
+                    break;
+            }
         }
         else
         {

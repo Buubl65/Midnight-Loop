@@ -24,6 +24,9 @@ public class CharacterStats : MonoBehaviour
     public float dashStaminaCost = 25f;
     public float jumpStaminaCost = 15f;
 
+    [Header("Combat")]
+    public float attackDamage = 20f;
+
     [Header("Money")]
     public int money = 0;
 

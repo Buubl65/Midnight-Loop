@@ -11,7 +11,13 @@ public class ShopItem : MonoBehaviour
 
     public string itemName;
     public int price = 10;
-    public Transform visual; 
+
+    [Header("Item Effect")]
+    public ItemType type;       
+    public int boostAmount = 5;    
+
+    [Header("Visuals")]
+    public Transform visual;
 
     public void Rotate(float speed)
     {
