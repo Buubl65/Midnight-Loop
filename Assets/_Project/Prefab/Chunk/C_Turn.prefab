@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 5538870557005357140}
   - component: {fileID: 6545224189844972817}
+  - component: {fileID: 8072885209043606068}
+  - component: {fileID: 1729491454217950760}
   m_Layer: 0
   m_Name: C_Turn
   m_TagString: Untagged
@@ -60,6 +62,53 @@ MonoBehaviour:
   West: 0
   spawnWeight: 1
   isBorder: 0
+--- !u!114 &8072885209043606068
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5908850987997913580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.AI.Navigation::Unity.AI.Navigation.NavMeshSurface
+  m_SerializedVersion: 0
+  m_AgentTypeID: 0
+  m_CollectObjects: 0
+  m_Size: {x: 10, y: 10, z: 10}
+  m_Center: {x: 0, y: 2, z: 0}
+  m_LayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_UseGeometry: 0
+  m_DefaultArea: 0
+  m_GenerateLinks: 0
+  m_IgnoreNavMeshAgent: 1
+  m_IgnoreNavMeshObstacle: 1
+  m_OverrideTileSize: 0
+  m_TileSize: 256
+  m_OverrideVoxelSize: 0
+  m_VoxelSize: 0.16666667
+  m_MinRegionArea: 2
+  m_NavMeshData: {fileID: 23800000, guid: d7968d726eed4fa4699cd4df5c6a023c, type: 2}
+  m_BuildHeightMesh: 0
+--- !u!114 &1729491454217950760
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5908850987997913580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76c42bf8067e2504e97e63ce1095eed8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ChunkEnemySpawner
+  enemyPrefab: {fileID: 981934299079210439, guid: e93361587684eb24faa6f8be0a56da04, type: 3}
+  spawnPoints: []
+  fallbackEnemyCount: 1
 --- !u!1001 &1342061450287798536
 PrefabInstance:
   m_ObjectHideFlags: 0
