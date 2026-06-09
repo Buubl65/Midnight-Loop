@@ -36,7 +36,8 @@ public class EnemyAI : MonoBehaviour
         animator = GetComponent<Animator>();
         player = GameObject.Find("MainCharacter").transform;
         navAgent = GetComponent<NavMeshAgent>();
-        stats = GetComponent<EnemyStats>(); 
+        stats = GetComponent<EnemyStats>();
+        weapon = GetComponentInChildren<EnemyWeapon>();
     }
 
     private void Start()

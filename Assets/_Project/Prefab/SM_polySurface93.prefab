@@ -101,7 +101,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45e9b4eca07c9bb448418997e3afc870, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ShopItem
-  itemName: Burger
+  itemName: Burger(Increase Defence +5)
   price: 10
   type: 1
   boostAmount: 5

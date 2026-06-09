@@ -456,7 +456,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyStats
   health: 100
-  damage: 20
+  damage: 50
   hitEffect: {fileID: 0}
   moneyPrefab: {fileID: 1661890793240581760, guid: 1a5398df4d64db144b7a7d2969bc4879, type: 3}
   healthPrefab: {fileID: 2090337481262853440, guid: 14ad43a33d1bd734d9e9f7a2484e9aab, type: 3}

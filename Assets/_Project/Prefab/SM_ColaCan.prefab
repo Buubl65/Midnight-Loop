@@ -93,8 +93,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45e9b4eca07c9bb448418997e3afc870, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ShopItem
-  itemName: Coca
+  itemName: CocaCola (Increase MaxHealth +5)
   price: 10
+  type: 0
+  boostAmount: 5
   visual: {fileID: 1949134483598196382}
 --- !u!4 &1949134483598196382 stripped
 Transform:
