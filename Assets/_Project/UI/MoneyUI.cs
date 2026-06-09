@@ -8,6 +8,6 @@ public class MoneyUI : MonoBehaviour
 
     void Update()
     {
-        moneyText.text = stats.money.ToString("0");
+        moneyText.text = stats.money.ToString();
     }
 }

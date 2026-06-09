@@ -102,6 +102,7 @@ public class CharacterStats : MonoBehaviour
         return false;
     }
 
+
     void Die()
     {
         Debug.Log("Игрок умер");
