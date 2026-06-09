@@ -85,5 +85,5 @@ MonoBehaviour:
   South: 0
   East: 0
   West: 0
-  spawnWeight: 1
+  spawnWeight: 0
   isBorder: 1
