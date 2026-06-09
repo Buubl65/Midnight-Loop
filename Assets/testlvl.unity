@@ -1830,7 +1830,7 @@ MonoBehaviour:
   attackPoint: {fileID: 88550514}
   enemyLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4294967295
   attackDamage: 25
   attackRange: 0.8
 --- !u!4 &2060955160 stripped
