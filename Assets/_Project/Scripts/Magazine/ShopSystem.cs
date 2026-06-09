@@ -4,6 +4,7 @@ using TMPro;
 public class ShopSystem : MonoBehaviour
 {
     public CharacterStats playerStats;
+    public PlayerCombat playerCombat;
 
     [Header("Items")]
     public Transform itemsContainer;
@@ -111,7 +112,7 @@ public class ShopSystem : MonoBehaviour
                     break;
 
                 case ShopItem.ItemType.IncreaseDamage:
-                    playerStats.attackDamage += item.boostAmount;
+                    playerCombat.attackDamage += item.boostAmount;
                     Debug.Log("Damage increased by " + item.boostAmount);
                     break;
             }
