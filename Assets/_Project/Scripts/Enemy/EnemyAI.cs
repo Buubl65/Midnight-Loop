@@ -18,14 +18,18 @@ public class EnemyAI : MonoBehaviour
 
     [Header("Швидкість руху")]
     public float walkSpeed = 3.5f; 
-    public float chaseSpeed = 9f; 
+    public float chaseSpeed = 9f;
+
+    [Header("Зброя")]
+    public EnemyWeapon weapon;
 
     private EnemyStats stats;
 
     private Vector3 walkPoint;
     private bool walkPointSet;
     private bool alreadyAttacked;
-    private bool isTakingDamage; 
+    private bool isTakingDamage;
+    public bool IsAttacking { get; set; }
 
     private void Awake()
     {
@@ -124,20 +128,26 @@ public class EnemyAI : MonoBehaviour
             animator.SetTrigger("Attack");
 
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
-
-            RaycastHit hit;
-            Debug.Log("КОМАНДА НА УДАР ПІШЛА! Удар номер: " + randomAttack);
-            if (Physics.Raycast(transform.position, transform.forward, out hit, attackRange))
-            {
-                // Тут буде логіка завдання шкоди гравцю. 
-                // Ти зможеш брати значення шкоди так: stats.damage
-            }
         }
     }
 
     private void ResetAttack()
     {
         alreadyAttacked = false;
+    }
+
+    public void EnableWeaponDamage()
+    {
+        IsAttacking = true;
+        if (weapon != null)
+        {
+            weapon.ResetHit(); 
+        }
+    }
+
+    public void DisableWeaponDamage()
+    {
+        IsAttacking = false;
     }
 
     public void TriggerHit()
