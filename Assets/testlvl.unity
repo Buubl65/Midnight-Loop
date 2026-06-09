@@ -2931,7 +2931,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 009c45859e0758a44aa3ea94c805f333, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HealthUI
-  stats: {fileID: 1987187566}
+  stats: {fileID: 1637273591}
   healthText: {fileID: 1692891032}
 --- !u!114 &1692891032
 MonoBehaviour:
@@ -3083,7 +3083,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a41e24ff3055ec4d87f95be94fc66a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DefenseUI
-  stats: {fileID: 1987187566}
+  stats: {fileID: 1637273591}
   defenseText: {fileID: 1732709233}
 --- !u!114 &1732709233
 MonoBehaviour:
@@ -3504,7 +3504,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfca35de3542120488e9459a7f73bf3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StaminaUI
-  stats: {fileID: 1987187566}
+  stats: {fileID: 1637273591}
   staminaText: {fileID: 1899016018}
 --- !u!114 &1899016018
 MonoBehaviour:
@@ -3656,7 +3656,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b45397ac4cd18aa4fb94297ebdc03415, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MoneyUI
-  stats: {fileID: 1987187566}
+  stats: {fileID: 1637273591}
   moneyText: {fileID: 1901301745}
 --- !u!114 &1901301745
 MonoBehaviour:
@@ -3770,8 +3770,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1987187565}
   - component: {fileID: 1987187564}
-  - component: {fileID: 1987187567}
-  - component: {fileID: 1987187566}
   m_Layer: 0
   m_Name: MainCharacter
   m_TagString: Player
@@ -3820,48 +3818,6 @@ Transform:
   - {fileID: 1637273588}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: -1.732, z: 0}
---- !u!114 &1987187566
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1987187563}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0584d36b08b553645b38150bb383f1cc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CharacterStats
-  maxHealth: 100
-  currentHealth: 0
-  defense: 10
-  moveSpeed: 5
-  jumpSpeed: 7
-  dashSpeed: 20
-  dashDuration: 0.2
-  dashCooldown: 1
-  maxStamina: 100
-  currentStamina: 100
-  staminaRegen: 15
-  dashStaminaCost: 25
-  jumpStaminaCost: 15
-  money: 0
---- !u!114 &1987187567
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1987187563}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 81edfeb5cd5d74e4dad6d87caf64dfaf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CharacterMovement
-  controller: {fileID: 1987187564}
-  stats: {fileID: 1987187566}
-  gravity: 9.81
-  terminalVelocity: 100
 --- !u!1 &2061523754
 GameObject:
   m_ObjectHideFlags: 0
