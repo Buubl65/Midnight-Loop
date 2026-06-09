@@ -9,7 +9,15 @@ public class EnemyStats : MonoBehaviour
     [Header("Ефекти")]
     public ParticleSystem hitEffect;
 
+    [Header("Налаштування Луту")]
+    public GameObject moneyPrefab;  
+    public GameObject healthPrefab;  
+    [Range(0, 100)]
+    public int dropChance = 70;     
+
     private EnemyAI enemyAI;
+    private bool isDead = false;    
+
 
     private void Start()
     {
@@ -32,7 +40,7 @@ public class EnemyStats : MonoBehaviour
 
     public void TakeDamage(float damageAmount)
     {
-        if (health <= 0) return;
+        if (health <= 0 || isDead) return;
 
         health -= damageAmount;
 
@@ -40,11 +48,31 @@ public class EnemyStats : MonoBehaviour
 
         if (health <= 0)
         {
+            isDead = true;
+
+            DropLoot();
+
             enemyAI.TriggerDeath();
         }
         else
         {
             enemyAI.TriggerHit();
+        }
+    }
+
+    private void DropLoot()
+    {
+        if (Random.Range(0, 101) <= dropChance)
+        {
+            int randomChoice = Random.Range(0, 2);
+            GameObject selectedPrefab = (randomChoice == 0) ? moneyPrefab : healthPrefab;
+
+            if (selectedPrefab != null)
+            {
+                Vector3 spawnPos = transform.position + new Vector3(0f, 0.5f, 0f);
+
+                Instantiate(selectedPrefab, spawnPos, Quaternion.identity);
+            }
         }
     }
 }

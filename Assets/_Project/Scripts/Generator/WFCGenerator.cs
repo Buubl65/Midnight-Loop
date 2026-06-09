@@ -25,7 +25,6 @@ public class WFCGenerator : MonoBehaviour
             this.weight = prefab.spawnWeight;
             this.isBorder = prefab.isBorder;
 
-            // Розрахунок виходів при повороті за годинниковою стрілкою (Unity Y-axis)
             switch (rotationIndex)
             {
                 case 0:
@@ -63,6 +62,7 @@ public class WFCGenerator : MonoBehaviour
     [SerializeField] private Vector2Int gridSize = new Vector2Int(10, 10);
     [SerializeField] private float chunkSize = 10f;
     [SerializeField] private Transform player;
+    [SerializeField] private int maxGenerationAttempts = 50; // Максимальна кількість спроб перезапуску
 
     private Cell[,] grid;
     private List<WFCTile> allTilesPrototype = new List<WFCTile>();
@@ -73,23 +73,39 @@ public class WFCGenerator : MonoBehaviour
         GenerateMap();
     }
 
+    // ОНОВЛЕНА ФУНКЦІЯ З ЦИКЛОМ ПЕРЕЗАПУСКУ
     public void GenerateMap()
     {
-        PrepareTilesPrototypes();
-        InitializeGrid();
-        SpawnPlayerInCenter();
+        int currentAttempt = 0;
+        bool generationSuccess = false;
 
-        if (RunWFC())
+        while (currentAttempt < maxGenerationAttempts)
         {
+            currentAttempt++;
+
+            PrepareTilesPrototypes();
+            InitializeGrid();
+
+            if (RunWFC())
+            {
+                generationSuccess = true;
+                break; // Генерація пройшла успішно, виходимо з циклу спроб!
+            }
+
+            // Якщо зайшли в глухий кут, цикл піде на наступне коло, скинувши grid
+        }
+
+        if (generationSuccess)
+        {
+            SpawnPlayerInCenter();
             InstantiateGrid();
-            Debug.Log("WFC: Мапу успішно згенеровано з правильними з'єднаннями!");
+            Debug.Log($"WFC: Мапу успішно згенеровано з правильними з'єднаннями за {currentAttempt} спроб(и)!");
         }
         else
         {
-            Debug.LogError("WFC: Помилка суперечності! Не вдалося підібрати тайли без порушення правил. Спробуйте ще раз або додайте більше типів чанків (наприклад, пусті блоки чи тупики).");
+            Debug.LogError($"WFC: Навіть за {maxGenerationAttempts} спроб алгоритм уперся в суперечність. Твоїм тайлам фізично не вистачає комбінацій/поворотів, щоб закрити мапу!");
         }
     }
-
 
     private void PrepareTilesPrototypes()
     {
@@ -120,7 +136,6 @@ public class WFCGenerator : MonoBehaviour
 
     private void ApplyBorderConstraints(Cell cell)
     {
-        // Забороняємо дорогам виходити за межі мапи
         cell.options.RemoveAll(tile =>
             (cell.position.y == gridSize.y - 1 && tile.North) ||
             (cell.position.y == 0 && tile.South) ||
@@ -145,7 +160,6 @@ public class WFCGenerator : MonoBehaviour
             int minOptions = int.MaxValue;
             bool allCollapsed = true;
 
-            // Чітка перевірка стану всієї сітки
             for (int x = 0; x < gridSize.x; x++)
             {
                 for (int y = 0; y < gridSize.y; y++)
@@ -156,8 +170,7 @@ public class WFCGenerator : MonoBehaviour
                     allCollapsed = false;
                     int count = cell.options.Count;
 
-                    // Якщо у клітинки 0 варіантів — це зафіксована суперечність (глухий кут алгоритму)
-                    if (count == 0) return false;
+                    if (count == 0) return false; // Повертаємо false при глухому куті
 
                     if (count < minOptions)
                     {
@@ -167,14 +180,14 @@ public class WFCGenerator : MonoBehaviour
                 }
             }
 
-            if (allCollapsed) return true; // Всі колапсували успішно!
+            if (allCollapsed) return true;
             if (nextCell == null) return false;
 
             CollapseCell(nextCell);
 
             if (!PropagateConstraints(nextCell))
             {
-                return false;
+                return false; // Повертаємо false, якщо обмеження призвели до 0 варіантів
             }
         }
     }
@@ -271,7 +284,6 @@ public class WFCGenerator : MonoBehaviour
 
     private void InstantiateGrid()
     {
-        // Очищення старих об'єктів перед генерацією
         for (int i = transform.childCount - 1; i >= 0; i--)
         {
             DestroyImmediate(transform.GetChild(i).gameObject);
@@ -285,20 +297,24 @@ public class WFCGenerator : MonoBehaviour
                 if (cell.collapsedTile != null)
                 {
                     Vector3 spawnPos = new Vector3(x * chunkSize, 0, y * chunkSize);
-
                     Vector3 originalRot = cell.collapsedTile.prefab.transform.eulerAngles;
 
-                    // Додаємо поворот від WFC тільки до осі Y
                     float newYRot = originalRot.y + (cell.collapsedTile.rotationIndex * 90f);
                     Quaternion spawnRot = Quaternion.Euler(originalRot.x, newYRot, originalRot.z);
-                    // -----------------------
 
                     Chunk spawnedChunk = Instantiate(cell.collapsedTile.prefab, spawnPos, spawnRot, transform);
                     spawnedChunk.name = $"Chunk_{x}_{y}_Rot_{cell.collapsedTile.rotationIndex * 90}";
+
+                    ChunkEnemySpawner spawner = spawnedChunk.GetComponentInChildren<ChunkEnemySpawner>();
+                    if (spawner != null)
+                    {
+                        spawner.SpawnEnemies();
+                    }
                 }
             }
         }
     }
+
     private void SpawnPlayerInCenter()
     {
         int centerX = gridSize.x / 2;

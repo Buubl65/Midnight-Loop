@@ -420,7 +420,7 @@ MonoBehaviour:
   attackRange: 2
   walkSpeed: 3.5
   chaseSpeed: 10
-  weapon: {fileID: 5955811944454160582}
+  weapon: {fileID: 0}
 --- !u!95 &7201158276401889269
 Animator:
   serializedVersion: 7
@@ -458,6 +458,9 @@ MonoBehaviour:
   health: 100
   damage: 20
   hitEffect: {fileID: 0}
+  moneyPrefab: {fileID: 1661890793240581760, guid: 1a5398df4d64db144b7a7d2969bc4879, type: 3}
+  healthPrefab: {fileID: 2090337481262853440, guid: 14ad43a33d1bd734d9e9f7a2484e9aab, type: 3}
+  dropChance: 70
 --- !u!1 &1005482424025883045
 GameObject:
   m_ObjectHideFlags: 0

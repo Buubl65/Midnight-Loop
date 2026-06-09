@@ -1,9 +1,17 @@
-using UnityEngine;
+п»їusing UnityEngine;
 
 public class EnemyWeapon : MonoBehaviour
 {
     public EnemyAI enemy;
     private bool hasHit;
+
+    private void Awake()
+    {
+        if (enemy == null)
+        {
+            enemy = GetComponentInParent<EnemyAI>();
+        }
+    }
 
     public void ResetHit()
     {
@@ -12,22 +20,20 @@ public class EnemyWeapon : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        // Якщо ворог не атакує або вже завдав удару за цю анімацію — ігноруємо
         if (!enemy.IsAttacking || hasHit)
             return;
 
-        // Перевіряємо, чи є у об'єкта, якого торкнувся меч, скрипт CharacterStats (це має бути ваш гравець)
         CharacterStats stats = other.GetComponent<CharacterStats>();
 
         if (stats != null)
         {
             EnemyStats enemyStats = enemy.GetComponent<EnemyStats>();
 
-            // Завдаємо шкоди
+            // Р—Р°РІРґР°С”РјРѕ С€РєРѕРґРё
             stats.TakeDamage(enemyStats.damage);
-            hasHit = true; // Забороняємо завдавати шкоду двічі за один помах
+            hasHit = true; // Р—Р°Р±РѕСЂРѕРЅСЏС”РјРѕ Р·Р°РІРґР°РІР°С‚Рё С€РєРѕРґСѓ РґРІС–С‡С– Р·Р° РѕРґРёРЅ РїРѕРјР°С…
 
-            Debug.Log("Ворог наніс дамаг!"); // Для перевірки в консолі
+            Debug.Log("Р’РѕСЂРѕРі РЅР°РЅС–СЃ РґР°РјР°Рі!"); // Р”Р»СЏ РїРµСЂРµРІС–СЂРєРё РІ РєРѕРЅСЃРѕР»С–
         }
     }
 }

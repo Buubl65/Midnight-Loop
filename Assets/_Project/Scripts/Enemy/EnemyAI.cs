@@ -39,6 +39,20 @@ public class EnemyAI : MonoBehaviour
         stats = GetComponent<EnemyStats>(); 
     }
 
+    private void Start()
+    {
+        GameObject realPlayer = GameObject.FindWithTag("Player");
+
+        if (realPlayer != null)
+        {
+            player = realPlayer.transform;
+        }
+        else
+        {
+            Debug.LogError($"[{gameObject.name}] EnemyAI: Не вдалося знайти гравця! Перевірте, чи стоїть тег 'Player' на гравці.");
+        }
+    }
+
     private void Update()
     {
         if (stats.health <= 0 || isTakingDamage) return;
