@@ -27,8 +27,6 @@ public class GTAPickup : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             Debug.Log("Игрок зайшов в колайдер");
-
-            Destroy(gameObject);
         }
     }
 }
