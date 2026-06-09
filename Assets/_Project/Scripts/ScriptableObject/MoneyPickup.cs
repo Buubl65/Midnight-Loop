@@ -15,7 +15,7 @@ public class MoneyPickup : MonoBehaviour
             int randomAmount = Random.Range(minMoney, maxMoney + 1);
 
             // Додаємо гроші гравцю
-            playerStats.AddMoney(randomAmount);
+            //playerStats.AddMoney(randomAmount);
 
             Debug.Log("Ви підібрали гроші! Отримано: " + randomAmount + " монет.");
 

@@ -81,11 +81,6 @@ public class CharacterStats : MonoBehaviour
             currentStamina = 0;
     }
 
-    public void AddMoney(int amount)
-    {
-        money += amount;
-    }
-
     void Die()
     {
         Debug.Log("Игрок умер");
