@@ -1,14 +1,15 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class StaminaUI : MonoBehaviour
 {
     public CharacterStats stats;
-    public Image staminaFill;
+    public TMP_Text staminaText;
 
     void Update()
     {
-        staminaFill.fillAmount =
-            stats.currentStamina / stats.maxStamina;
+        staminaText.text =
+            stats.currentStamina.ToString("0") + " <size=70%>/ " + stats.maxStamina.ToString("0") + "</size>";
     }
 }
